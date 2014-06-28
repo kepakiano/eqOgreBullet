@@ -1,0 +1,76 @@
+#
+# All measurements are in meters. The origin of the coordinate system is 
+# the origin of the half circle on projection floor ground level.
+#
+
+global
+{
+    EQ_WINDOW_IATTR_HINT_FULLSCREEN OFF
+    EQ_WINDOW_IATTR_PLANES_STENCIL 1
+}
+
+server
+{
+    config
+    {
+        appNode
+        {
+            connection { hostname "127.0.0.1" }
+            pipe {
+                window { name "wall1" viewport [   0   0 300 400 ] channel { name "test1" } }
+            }
+        }
+        node {
+            connection { hostname "127.0.0.1" }
+            pipe {
+                window { name "wall2" viewport [ 310   0 300 400 ] channel { name "test2" } }
+            }
+        }
+        node {
+            connection { hostname "127.0.0.1" }
+            pipe {
+                window { name "wall3" viewport [ 620   0 300 400 ] channel { name "test3" } }
+            }
+        }
+        node {
+            connection { hostname "127.0.0.1" }
+            pipe {
+                window { name "wall4" viewport [ 930   0 300 400 ] channel { name "test4" } }
+            }
+        }
+        node {
+            connection { hostname "127.0.0.1" }
+            pipe {
+                window { name "wall5" viewport [ 210 430 400 300 ] channel { name "test5" } }
+            }
+        }
+        node {
+            connection { hostname "127.0.0.1" }
+            pipe {
+                window { name "wall6" viewport [ 620 430 400 300 ] channel { name "test6" } }
+            }
+        }
+        compound
+        {
+
+            compound { channel "test1"
+             wall { bottom_left [ -2.49 0 -0.0771964 ] bottom_right [ -1.5598 0 -1.94244 ] top_left [ -2.49 2.6 -0.0771964 ] }
+            }
+            compound { channel "test2"
+              wall { bottom_left [ -1.78883 0 -1.73382 ] bottom_right [ 0.1549 0 -2.48638 ] top_left [ -1.78883 2.6 -1.73382 ] }
+            }
+           compound { channel "test3"
+              wall { bottom_left [ -0.1549 0 -2.48638 ] bottom_right [ 1.78883 0 -1.73382 ] top_left [ -0.1549 2.6 -2.48638 ] }
+           }
+            compound { channel "test4"
+                wall { bottom_left [ 1.5598 0 -1.94244 ] bottom_right [ 2.49 0 -0.0771964 ] top_left [ 1.5598 2.6 -1.94244 ] }
+            }
+            compound { channel "test5"
+                wall { bottom_left [ -2.49 0 -0.0771964 ] bottom_right [ 0.7 0 -0.0771964 ] top_left [ -2.49 0 -2.4912 ] }
+            }
+            compound { channel "test6"
+                wall { bottom_left [ -0.7 0 -0.0771964 ] bottom_right [ 2.49 0 -0.0771964 ] top_left [ -0.7 0 -2.4912 ] }
+            }
+        }
+    }
+}
