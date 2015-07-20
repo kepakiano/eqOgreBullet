@@ -72,9 +72,9 @@ bool eqOgreBullet::initEq(int argc, char *argv[])
 void eqOgreBullet::initActors()
 {
     // Create some spheres falling from the sky
-    for(int i = 0; i < 11; i++)
+    for(int i = 0; i < 21; i++)
     {
-        const Vec3 pos((i - 5)/3.0f, 2+i*2, -2);
+        const Vec3 pos((i - 5)/3.0f, 2+i*2, -3);
         std::stringstream ssName;
         ssName << "sphere_" << i;
         const std::string name = ssName.str();
@@ -83,18 +83,18 @@ void eqOgreBullet::initActors()
 
         std::shared_ptr<OgreActor> ogreActor = std::make_shared<OgreActor>(
                     name,                        // Name of the Ogre::SceneNode
-                    pos,                         // Well... the position
+                    pos,                         
                     Vec4(0,0,0,1),               // Orientation, will be transformed into a (x,y,z,w) quaternion
                     "sphere.mesh",               // Name of the mesh, see assets folder
                     name,                        // Name of the Ogre::Entity
-                    "Green",          // Material name
+                    "Green",                     // Material name
                     true,                        // cast shadows
                     Vec3(parameters[0]) * 0.01   // Scale, sphere.mesh has a radius of 50 units
                 );
         std::shared_ptr<BulletActor> bulletActor = std::make_shared<BulletActor>(
                     name,
                     btSphere,                   // Create a sphere
-                    parameters,                 // One parameter needed: the radius, which is 5cm here
+                    parameters,                 // One parameter needed: the radius
                     pos,
                     5,                          // Mass: 5kg
                     Vec4(0,0,0,1),              // Orientation
@@ -105,9 +105,9 @@ void eqOgreBullet::initActors()
         actorMap[name] = actor;
     }
     // Create some boxes on the ground
-    for(int i = 0; i < 11; i++)
+    for(int i = 0; i < 21; i++)
     {
-        const Vec3 pos((i - 5)/3.0f, 0.1, -2);
+        const Vec3 pos((i - 5)/3.0f, 0.1, -3);
         std::stringstream ssName;
         ssName << "box_" << i;
         const std::string name = ssName.str();
@@ -118,18 +118,18 @@ void eqOgreBullet::initActors()
 
         std::shared_ptr<OgreActor> ogreActor = std::make_shared<OgreActor>(
                     name,                           // Name of the Ogre::SceneNode
-                    pos,                            // Well... the position
+                    pos,                            
                     Vec4(0,0,0,1),                  // Orientation, will be transformed into a (x,y,z,w) quaternion
                     "cube.mesh",                    // Name of the mesh, see assets folder
                     name,                           // Name of the Ogre::Entity
-                    "Green",             // Material name
+                    "Green",                        // Material name
                     true,                           // cast shadows
                     Vec3(parameters[0], parameters[1], parameters[2]) * 0.02   // Scale, cube.mesh has an edge length of 100 units
                 );
         std::shared_ptr<BulletActor> bulletActor = std::make_shared<BulletActor>(
                     name,
                     btBox,                      // Create a box
-                    parameters,                 // One parameter needed: the radius, which is 5cm here
+                    parameters,                 // Three parameter needed: box length, width and height
                     pos,
                     1,                          // Mass: 1kg
                     Vec4(0,0,0,1),              // Orientation
